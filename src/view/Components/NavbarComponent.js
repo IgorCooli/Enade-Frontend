@@ -59,7 +59,7 @@ class NavbarComponent extends React.Component{
                   >
                   </NavbarButton>
                 </Nav>
-                <DropdownButton title={`Olá, ${this.props.nome}`} id="basic-nav-dropdown">
+                <DropdownButton variant="light" title={`Olá, ${this.props.nome}`} id="dropDownId">
                     <Dropdown.Item><Button variant="light" onClick={() => this.props.onClick()}>Logout</Button></Dropdown.Item>
                 </DropdownButton>
             </Navbar.Collapse>
