@@ -45,7 +45,11 @@
 }
 
 .app{
-  background-color: blueviolet;
+  background-color: rgb(131, 103, 156);
   min-height: 100vh;
   min-width: 100vh;
+}
+
+#cardPrincipal{
+  text-align: center;
 }

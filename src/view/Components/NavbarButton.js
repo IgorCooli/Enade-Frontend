@@ -3,12 +3,12 @@ import React from 'react'
 import Button from 'react-bootstrap/Button';
 
 
-class SubmitButton extends React.Component{
+class NavbarButton extends React.Component{
   render(){
     return (
-      <div className="submitButton">
+      <div className="navbarButton">
         <Button 
-          variant="primary"
+          variant="light"
           className={this.props.className}
           disabled={this.props.disabled}
           onClick={ () => this.props.onClick() }
@@ -20,4 +20,4 @@ class SubmitButton extends React.Component{
   }
 }
 
-export default SubmitButton;
+export default NavbarButton;

@@ -5,26 +5,19 @@ import { observer } from 'mobx-react';
 // import Form from 'react-bootstrap/Form';
 
 import UserStore from './store/UserStore';
-import LoginForm from './view/LoginComponents/LoginForm';
+import LoginForm from './view/LoginForm';
 import SubmitButton from './view/Components/SubmitButton';
+import CadastroFormSemProfessor from './view/CadastroFormSemProfessor'
 import NavbarComponent from './view/Components/NavbarComponent'
+import NavbarProfessor from './view/Components/NavbarProfessor'
+
+import enadewallpapper from './assets/enade-wallpapper.png'
 
 class App extends React.Component{
 
   async componentDidMount(){
     try {
-      // let res = await fetch('/isLoggedIn',{
-      //   method: 'post',
-      //   headers: {
-      //     'Accept': 'application/json',
-      //     'Content-Type': 'application/json'
-      //   },
-      //   body: {
 
-      //   }
-      // });
-
-      // let result = await res.json();
       console.log(UserStore)
       if(UserStore.isLoggedIn === true){
         UserStore.loading = false;
@@ -41,15 +34,6 @@ class App extends React.Component{
 
   async doLogout(){
     try {
-      // let res = await fetch('/logout',{
-      //   method: 'post',
-      //   headers: {
-      //     'Accept': 'application/json'
-      //   }
-      // });
-
-      // let result = await res.json();
-
       UserStore.isLoggedIn = false;
       UserStore.nome = '';
       UserStore.id = 0;
@@ -74,19 +58,44 @@ class App extends React.Component{
       )
     }else{
       if(UserStore.isLoggedIn){
-        return(
-          <div className="app">
-            <NavbarComponent
-              onClick={() => this.doLogout()}
-              nome={UserStore.nome}
-            ></NavbarComponent>
-          </div>
-        )
+        if(UserStore.tipo === "Estudante"){
+          return(
+            <div className="app">
+              <NavbarComponent
+                onClick={() => this.doLogout()}
+                nome={UserStore.nome}
+              ></NavbarComponent>
+              <div id="cardPrincipal" className="container col-md-10">
+                <br></br>
+                  <br></br>
+                  <br></br>
+                  <br></br>
+                  <img src={enadewallpapper}></img>
+                </div>
+            </div>
+          )
+        }if(UserStore.tipo === "Professor"){
+          return(
+            <div className="app">
+              <NavbarProfessor
+                onClick={() => this.doLogout()}
+                nome={UserStore.nome}
+              ></NavbarProfessor>
+              <div id="cardPrincipal" className="container col-md-10">
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <img src={enadewallpapper}></img>
+              </div>
+            </div>
+          )
+        }
       }
     }
 
     return (
-      <div className="app">
+      <div className="app" id="app">
         <br></br>
         <br></br>
         <br></br>

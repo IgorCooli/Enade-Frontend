@@ -1,9 +1,12 @@
 import React from 'react'
+import ReactDOM from 'react-dom'
 import axios from 'axios'
 
-import InputField from '../Components/InputField';
-import SubmitButton from '../Components/SubmitButton';
-import UserStore from '../../store/UserStore'
+import InputField from './Components/InputField';
+import SubmitButton from './Components/SubmitButton';
+import CadastrarButton from './Components/CadastrarButton';
+import UserStore from '../store/UserStore'
+import CadastroFormSemProfessor from './CadastroFormSemProfessor';
 
 
 class LoginForm extends React.Component{
@@ -54,11 +57,7 @@ class LoginForm extends React.Component{
     .then((response)=>{
       console.log(response.data)
       console.log(response.status)
-      // this.setState({
-      //   id: response.data.id,
-      //   nome: response.data.nome,
-      //   tipo: response.data.tipo,
-      // })
+
       if(response.status === 200){
         UserStore.isLoggedIn = true;
         UserStore.id = response.data.id;
@@ -78,29 +77,17 @@ class LoginForm extends React.Component{
       this.resetForm();
       alert("Usuário não encontrado!")
     })
-    // let res = await fetch('/login', {
-    //   method: 'post',
-    //   headers: {
-    //     'Accept': 'application/json',
-    //     'Content-Type': 'application/json'
-    //   },
-    //   body: JSON.stringify({
-    //     username: this.state.username,
-    //     password: this.state.password
-    //   })
-    // });
+  }
 
-    // let result = await res.json();
-    
-    // if(result && result.success){
-    //   UserStore.isLoggedId = true;
-    //   UserStore.username = result.username;
-    // }
-    // else if(result && result.success === false){
-    //   this.resetForm();
-    //   alert(result.msg);
-    // }
+  cadastrar(){
+    const element = (
+      <CadastroFormSemProfessor
+        
+      >
 
+      </CadastroFormSemProfessor>
+    )
+    ReactDOM.render(element, document.getElementById('app'));
   }
 
   render(){
@@ -143,8 +130,18 @@ class LoginForm extends React.Component{
           disabled={this.state.buttonDisabled}
           onClick={ () => this.doLogin() }
         >
-          
         </SubmitButton>
+
+        <br></br>
+
+        <CadastrarButton
+          text='Cadastre-se'
+          className='col-md-6'
+          disabled={this.state.buttonDisabled}
+          onClick={() => this.cadastrar()}
+        >
+
+        </CadastrarButton>
         
         <br></br>
 
