@@ -9,6 +9,7 @@ import CadastrarButton from './Components/CadastrarButton';
 import UserStore from '../store/UserStore'
 import LoginForm from './LoginForm';
 import TipoQuestaoSelect from './Components/TipoQuestaoSelect'
+import Alternativas from './Components/AlternativasTipoQuestObjetiva'
 
 import enadewallpapper from '../assets/enade-wallpapper.png'
 
@@ -37,24 +38,32 @@ class CadastroQuestaoForm extends React.Component{
 
 
   async cadastrar(){
-      if(!this.state.nome){
+      if(!this.state.descricao){
           return;
       }
-      if(!this.state.email){
+      if(!this.state.tipoQuestao){
           return;
       }
-      if(!this.state.senha){
+      if(!this.state.questaoCorreta){
           return;
+      }
+      if(!this.state.alternativaA && !this.state.alternativaB && !this.state.alternativaC 
+          && !this.state.alternativaD && !this.state.alternativaE){
+            return;
       }
       
       axios.post('http://localhost:8080/questao/save',{
-          nome: this.state.nome,
-          email: this.state.email,
-          senha: this.state.senha,
-          tipo: 'Professor'
+        descricao: this.state.descricao,
+        alternativaA: this.state.alternativaA,
+        alternativaB: this.state.alternativaB,
+        alternativaC: this.state.alternativaC,
+        alternativaD: this.state.alternativaD,
+        alternativaE: this.state.alternativaE,
+        questaoCorreta: this.state.questaoCorreta,
+        tipoQuestao: this.state.tipoQuestao
       })
       .then((response)=>{
-          alert('Usuário cadastrado com sucesso!!!');
+          alert('Questão Cadastrada com sucesso na base!!!');
           const element = (
             <div>
                 <br></br>
@@ -104,12 +113,17 @@ class CadastroQuestaoForm extends React.Component{
         </InputField>
         <br></br>
         <br></br>
-        <TipoQuestaoSelect className="col-md-12">
-          
+        <TipoQuestaoSelect className="col-md-12" 
+                           value={this.state.tipoQuestao} 
+                           onClick={() => this.setState.tipoQuestao}>            
         </TipoQuestaoSelect>
         <br></br>
         <br></br>
-
+        
+        <Alternativas disabled={true}> 
+          
+        </Alternativas>
+        
         <SubmitButton
                 text='Cadastrar'
                 className='col-md-12 mx-auto'
