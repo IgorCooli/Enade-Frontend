@@ -62,6 +62,7 @@ class App extends React.Component{
           return(
             <div className="app">
               <NavbarComponent
+                usuarioId={UserStore.id}
                 onClick={() => this.doLogout()}
                 nome={UserStore.nome}
               ></NavbarComponent>

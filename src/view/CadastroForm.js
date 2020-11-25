@@ -100,7 +100,6 @@ class CadastroForm extends React.Component{
             className='col-md-12'
             type='text'
             placeholder='Nome'
-            value={this.state.nome ? this.state.nome : ''}
             onChange={(val) => this.setInputValue('nome', val)}
         >
         </InputField>
@@ -110,7 +109,6 @@ class CadastroForm extends React.Component{
             className='col-md-12'
             type='email'
             placeholder='Email'
-            value={this.state.email ? this.state.email : ''}
             onChange={(val) => this.setInputValue('email', val)}
         >
         </InputField>
@@ -121,7 +119,6 @@ class CadastroForm extends React.Component{
                 className='col-md-12'
                 type='password'
                 placeholder='Senha'
-                value={this.state.senha ? this.state.senha : ''}
                 onChange={(val) => this.setInputValue('senha', val)}
             >
             </InputField>

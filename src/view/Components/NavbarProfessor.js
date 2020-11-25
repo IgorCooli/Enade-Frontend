@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import axios from 'axios'
 
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
@@ -10,9 +11,12 @@ import Button from 'react-bootstrap/Button';
 import NavbarButton from './NavbarButton'
 import CadastroForm from '../CadastroForm';
 import CadastroQuestaoForm from '../CadastroQuestaoForm';
+import CadastroProva from '../CadastroProva'
 
 
 import enadewallpapper from '../../assets/enade-wallpapper.png'
+import BancoDeQuestoes from '../BancoDeQuestoes';
+import BancoDeProvas from '../BancoDeProvas';
 
 
 class NavbarComponent extends React.Component{
@@ -36,6 +40,24 @@ class NavbarComponent extends React.Component{
     )
     ReactDOM.render(element, document.getElementById('cardPrincipal'));
   }
+  bancoDeProvas(){
+    const element = (
+      <BancoDeProvas
+      >
+
+      </BancoDeProvas>
+    )
+    ReactDOM.render(element, document.getElementById('cardPrincipal'));
+  }
+  bancoDeQuestoes(){
+    const element = (
+      <BancoDeQuestoes
+      >
+
+      </BancoDeQuestoes>
+    )
+    ReactDOM.render(element, document.getElementById('cardPrincipal'));
+  }
 
   cadastrarQuestao(){
     const element = (
@@ -48,6 +70,16 @@ class NavbarComponent extends React.Component{
     ReactDOM.render(element, document.getElementById('cardPrincipal'));
   }
 
+  cadastrarProvas(){
+    const element = (
+      <CadastroProva
+        
+      >
+
+      </CadastroProva>
+    )
+    ReactDOM.render(element, document.getElementById('cardPrincipal'));
+  }
 
 
   async voltar(){
@@ -87,7 +119,7 @@ class NavbarComponent extends React.Component{
                         <NavbarButton
                           text='Banco de Questões'
                           className='col-md-12'
-                          onClick={ () => 0 }
+                          onClick={ () => this.bancoDeQuestoes() }
                         >
                         </NavbarButton>
                         <NavbarButton
@@ -103,7 +135,13 @@ class NavbarComponent extends React.Component{
                         <NavbarButton
                           text='Cadastrar Prova'
                           className='col-md-12'
-                          onClick={ () => 0 }
+                          onClick={ () => this.cadastrarProvas() }
+                        >
+                        </NavbarButton>
+                        <NavbarButton
+                          text='Provas'
+                          className='col-md-12'
+                          onClick={ () => this.bancoDeProvas() }
                         >
                         </NavbarButton>
                         <NavbarButton

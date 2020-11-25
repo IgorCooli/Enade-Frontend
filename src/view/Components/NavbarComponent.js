@@ -11,9 +11,23 @@ import NavbarButton from './NavbarButton'
 
 
 import enadewallpapper from '../../assets/enade-wallpapper.png'
+import BancoDeProvasAluno from '../BancoDeProvasAluno'
 
 
 class NavbarComponent extends React.Component{
+  constructor(props){
+    super(props);
+    this.state = {
+        usuarioId: this.props.usuarioId
+    }
+  }
+
+  setInputValue(property, val){
+    this.setState({
+      [property]: val
+    })
+  }
+
   doLogout(){
       UserStore.isLoggedIn = false;
       UserStore.nome = '';
@@ -38,6 +52,17 @@ class NavbarComponent extends React.Component{
 
   }
 
+  visualizarProvas(){
+    const element = (
+      <BancoDeProvasAluno
+        usuarioId={this.state.usuarioId}
+      >
+
+      </BancoDeProvasAluno>
+    )
+    ReactDOM.render(element, document.getElementById('cardPrincipal'));
+  }
+
   render(){
     return (
       <div className="navbar">
@@ -49,7 +74,7 @@ class NavbarComponent extends React.Component{
                   <NavbarButton
                     text='Visualizar Provas'
                     className='col-md-12'
-                    onClick={ () => 0 }
+                    onClick={ () => this.visualizarProvas() }
                   >
                   </NavbarButton>
                   <NavbarButton

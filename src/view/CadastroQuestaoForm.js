@@ -9,7 +9,9 @@ import CadastrarButton from './Components/CadastrarButton';
 import UserStore from '../store/UserStore'
 import LoginForm from './LoginForm';
 import TipoQuestaoSelect from './Components/TipoQuestaoSelect'
-import Alternativas from './Components/AlternativasTipoQuestObjetiva'
+
+import Form from 'react-bootstrap/Form';
+import FormControl from 'react-bootstrap/FormControl';
 
 import enadewallpapper from '../assets/enade-wallpapper.png'
 
@@ -25,8 +27,8 @@ class CadastroQuestaoForm extends React.Component{
       alternativaC:'',
       alternativaD:'',
       alternativaE:'',
-      questaoCorreta: '',
-      tipoQuestao: ''
+      questaoCorreta: 'a',
+      tipoQuestao: 1
     }
   }
 
@@ -41,16 +43,6 @@ class CadastroQuestaoForm extends React.Component{
       if(!this.state.descricao){
           return;
       }
-      if(!this.state.tipoQuestao){
-          return;
-      }
-      if(!this.state.questaoCorreta){
-          return;
-      }
-      if(!this.state.alternativaA && !this.state.alternativaB && !this.state.alternativaC 
-          && !this.state.alternativaD && !this.state.alternativaE){
-            return;
-      }
       
       axios.post('http://localhost:8080/questao/save',{
         descricao: this.state.descricao,
@@ -59,11 +51,11 @@ class CadastroQuestaoForm extends React.Component{
         alternativaC: this.state.alternativaC,
         alternativaD: this.state.alternativaD,
         alternativaE: this.state.alternativaE,
-        questaoCorreta: this.state.questaoCorreta,
+        questaoCorreta: this.state.tipoQuestao == 1 ? '' : this.state.questaoCorreta,
         tipoQuestao: this.state.tipoQuestao
       })
       .then((response)=>{
-          alert('Questão Cadastrada com sucesso na base!!!');
+          alert('Questão cadastrada com sucesso!!!');
           const element = (
             <div>
                 <br></br>
@@ -76,6 +68,72 @@ class CadastroQuestaoForm extends React.Component{
           ReactDOM.render(element, document.getElementById('cardPrincipal'));
       })
 
+  }
+
+  onChangeAlternativaCorreta(event){
+    this.setInputValue('questaoCorreta', event.target.value)
+  }
+
+  onChangeTipoQuestao(event) {
+    this.setInputValue('tipoQuestao', event.target.value)
+    if(event.target.value == 1){
+      const element = (
+        <div></div>
+      )
+      ReactDOM.render(element, document.getElementById('alternativasId'));
+    }
+    else{
+      const element = (
+        <div>
+          <InputField
+              className='col-md-12'
+              type='text'
+              placeholder='Alternativa A'
+              onChange={(val) => this.setInputValue('alternativaA', val)}
+          >
+          </InputField>
+          <InputField
+              className='col-md-12'
+              type='text'
+              placeholder='Alternativa B'
+              onChange={(val) => this.setInputValue('alternativaB', val)}
+          >
+          </InputField>
+          <InputField
+              className='col-md-12'
+              type='text'
+              placeholder='Alternativa C'
+              onChange={(val) => this.setInputValue('alternativaC', val)}
+          >
+          </InputField>
+          <InputField
+              className='col-md-12'
+              type='text'
+              placeholder='Alternativa D'
+              onChange={(val) => this.setInputValue('alternativaD', val)}
+          >
+          </InputField>
+          <InputField
+              className='col-md-12'
+              type='text'
+              placeholder='Alternativa E'
+              onChange={(val) => this.setInputValue('alternativaE', val)}
+          >
+          </InputField>
+          <Form.Group controlId="alternativaCorretaId">
+            <Form.Label>Alternativa Correta</Form.Label>
+            <Form.Control as="select" onChange={this.onChangeAlternativaCorreta.bind(this)}>
+              <option value={"a"}>A</option>
+              <option value={"b"}>B</option>
+              <option value={"c"}>C</option>
+              <option value={"d"}>D</option>
+              <option value={"e"}>E</option>
+            </Form.Control>
+          </Form.Group>
+        </div>
+      )
+      ReactDOM.render(element, document.getElementById('alternativasId'));
+    }
   }
 
   voltar(){
@@ -92,6 +150,8 @@ class CadastroQuestaoForm extends React.Component{
     ReactDOM.render(element, document.getElementById('cardPrincipal'));
 
 }
+
+
 
 
   render(){
@@ -112,18 +172,20 @@ class CadastroQuestaoForm extends React.Component{
         >
         </InputField>
         <br></br>
-        <br></br>
-        <TipoQuestaoSelect className="col-md-12" 
+
+        <Form.Group controlId="exampleForm.ControlSelect1">
+          <Form.Label>Tipo Questão</Form.Label>
+          <Form.Control as="select" onChange={this.onChangeTipoQuestao.bind(this)}>
+            <option value={1}>Discursiva</option>
+            <option value={2}>Objetiva</option>
+          </Form.Control>
+        </Form.Group>
+        {/* <TipoQuestaoSelect className="col-md-12" 
                            value={this.state.tipoQuestao} 
                            onClick={() => this.setState.tipoQuestao}>            
-        </TipoQuestaoSelect>
+        </TipoQuestaoSelect> */}
         <br></br>
-        <br></br>
-        
-        <Alternativas disabled={true}> 
-          
-        </Alternativas>
-        
+        <div id="alternativasId"></div>
         <SubmitButton
                 text='Cadastrar'
                 className='col-md-12 mx-auto'
