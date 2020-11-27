@@ -10,25 +10,25 @@ import UserStore from '../store/UserStore'
 import LoginForm from './LoginForm';
 
 
-class CadastroForm extends React.Component{
+class CadastroForm extends React.Component {
 
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       nome: '',
       email: '',
       senha: '',
-      tipo:''
+      tipo: ''
     }
   }
 
-  setInputValue(property, val){
+  setInputValue(property, val) {
     this.setState({
       [property]: val
     })
   }
 
-  resetForm(){
+  resetForm() {
     this.setState({
       username: '',
       password: '',
@@ -36,42 +36,42 @@ class CadastroForm extends React.Component{
     })
   }
 
-  async cadastrar(){
-      if(!this.state.nome){
-          return;
-      }
-      if(!this.state.email){
-          return;
-      }
-      if(!this.state.senha){
-          return;
-      }
-      
-      axios.post('http://localhost:8080/usuario/save',{
-          nome: this.state.nome,
-          email: this.state.email,
-          senha: this.state.senha,
-          tipo: 'Estudante'
-      })
-      .then((response)=>{
-          alert('Usuário cadastrado com sucesso!!!');
-          const element = (
-              <div>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <LoginForm></LoginForm>
-              </div>
-          )
-          ReactDOM.render(element, document.getElementById('app'));
+  async cadastrar() {
+    if (!this.state.nome) {
+      return;
+    }
+    if (!this.state.email) {
+      return;
+    }
+    if (!this.state.senha) {
+      return;
+    }
+
+    axios.post('http://localhost:8080/usuario/save', {
+      nome: this.state.nome,
+      email: this.state.email,
+      senha: this.state.senha,
+      tipo: 'Estudante'
+    })
+      .then((response) => {
+        alert('Usuário cadastrado com sucesso!!!');
+        const element = (
+          <div>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <LoginForm></LoginForm>
+          </div>
+        )
+        ReactDOM.render(element, document.getElementById('app'));
       })
 
   }
 
-  async voltar(){
-   
+  async voltar() {
+
     const element = (
       <div>
         <br></br>
@@ -84,10 +84,10 @@ class CadastroForm extends React.Component{
     )
     ReactDOM.render(element, document.getElementById('app'));
 
-}
+  }
 
 
-  render(){
+  render() {
     return (
       <div className="cadastroForm col-md-8 mx-auto text-center">
         <br></br>
@@ -97,55 +97,55 @@ class CadastroForm extends React.Component{
         <br></br>
         <br></br>
         <InputField
-            className='col-md-12'
-            type='text'
-            placeholder='Nome'
-            value={this.state.nome ? this.state.nome : ''}
-            onChange={(val) => this.setInputValue('nome', val)}
+          className='col-md-12'
+          type='text'
+          placeholder='Nome'
+          value={this.state.nome ? this.state.nome : ''}
+          onChange={(val) => this.setInputValue('nome', val)}
         >
         </InputField>
         <br></br>
         <br></br>
         <InputField
-            className='col-md-12'
-            type='email'
-            placeholder='Email'
-            value={this.state.email ? this.state.email : ''}
-            onChange={(val) => this.setInputValue('email', val)}
+          className='col-md-12'
+          type='email'
+          placeholder='Email'
+          value={this.state.email ? this.state.email : ''}
+          onChange={(val) => this.setInputValue('email', val)}
         >
         </InputField>
         <br></br>
         <br></br>
         <div className="row col-md-12">
-            <InputField
-                className='col-md-12'
-                type='password'
-                placeholder='Senha'
-                value={this.state.senha ? this.state.senha : ''}
-                onChange={(val) => this.setInputValue('senha', val)}
-            >
-            </InputField>
-            <TipoUsuarioSelectSemProfessor>
+          <InputField
+            className='col-md-12'
+            type='password'
+            placeholder='Senha'
+            value={this.state.senha ? this.state.senha : ''}
+            onChange={(val) => this.setInputValue('senha', val)}
+          >
+          </InputField>
+          <TipoUsuarioSelectSemProfessor>
 
-            </TipoUsuarioSelectSemProfessor>
+          </TipoUsuarioSelectSemProfessor>
         </div>
 
         <SubmitButton
-                text='Cadastrar'
-                className='col-md-12 mx-auto'
-                onClick={ () => this.cadastrar() }
-            >
-                
+          text='Cadastrar'
+          className='col-md-12 mx-auto'
+          onClick={() => this.cadastrar()}
+        >
+
         </SubmitButton>
         <br></br>
         <CadastrarButton
-                text='Voltar'
-                className='col-md-12 mx-auto'
-                onClick={ () => this.voltar() }
-            >
-                
+          text='Voltar'
+          className='col-md-12 mx-auto'
+          onClick={() => this.voltar()}
+        >
+
         </CadastrarButton>
-        
+
       </div>
     );
   }

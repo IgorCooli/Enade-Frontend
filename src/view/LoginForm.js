@@ -9,28 +9,28 @@ import UserStore from '../store/UserStore'
 import CadastroFormSemProfessor from './CadastroFormSemProfessor';
 
 
-class LoginForm extends React.Component{
+class LoginForm extends React.Component {
 
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       id: 0,
       nome: '',
       email: '',
       senha: '',
-      tipo:'',
+      tipo: '',
       buttonDisabled: false
     }
   }
 
-  setInputValue(property, val){
+  setInputValue(property, val) {
     val = val.trim();
     this.setState({
       [property]: val
     })
   }
 
-  resetForm(){
+  resetForm() {
     this.setState({
       username: '',
       password: '',
@@ -39,11 +39,11 @@ class LoginForm extends React.Component{
   }
 
 
-  async doLogin(){
-    if(!this.state.email){
+  async doLogin() {
+    if (!this.state.email) {
       return;
     }
-    if(!this.state.senha){
+    if (!this.state.senha) {
       return;
     }
     this.setState({
@@ -54,35 +54,35 @@ class LoginForm extends React.Component{
       email: this.state.email,
       senha: this.state.senha
     })
-    .then((response)=>{
-      console.log(response.data)
-      console.log(response.status)
+      .then((response) => {
+        console.log(response.data)
+        console.log(response.status)
 
-      if(response.status === 200){
-        UserStore.isLoggedIn = true;
-        UserStore.id = response.data.id;
-        UserStore.nome = response.data.nome;
-        UserStore.tipo = response.data.tipo;
-        UserStore.email = response.data.email;
-        UserStore.senha = response.data.senha;
-        UserStore.isLoggedIn = true;
-        console.log(UserStore)
-      }else if(response.status === 401){
+        if (response.status === 200) {
+          UserStore.isLoggedIn = true;
+          UserStore.id = response.data.id;
+          UserStore.nome = response.data.nome;
+          UserStore.tipo = response.data.tipo;
+          UserStore.email = response.data.email;
+          UserStore.senha = response.data.senha;
+          UserStore.isLoggedIn = true;
+          console.log(UserStore)
+        } else if (response.status === 401) {
+          this.resetForm();
+          alert("Usuário não encontrado!")
+        }
+      })
+      .catch((err) => {
+        console.error(err)
         this.resetForm();
         alert("Usuário não encontrado!")
-      }
-    })
-    .catch((err)=>{
-      console.error(err)
-      this.resetForm();
-      alert("Usuário não encontrado!")
-    })
+      })
   }
 
-  cadastrar(){
+  cadastrar() {
     const element = (
       <CadastroFormSemProfessor
-        
+
       >
 
       </CadastroFormSemProfessor>
@@ -90,22 +90,22 @@ class LoginForm extends React.Component{
     ReactDOM.render(element, document.getElementById('app'));
   }
 
-  render(){
+  render() {
     return (
       <div className="loginForm col-md-4 mx-auto text-center">
-        
+
         <br></br>
 
         <h3>Login</h3>
-        
+
         <br></br>
-        
+
         <InputField
           className='col-md-10 mx-auto'
           type='email'
           placeholder='Email'
           value={this.state.email ? this.state.email : ''}
-          onChange={ (val) => this.setInputValue('email', val) }
+          onChange={(val) => this.setInputValue('email', val)}
         >
 
         </InputField>
@@ -117,18 +117,18 @@ class LoginForm extends React.Component{
           type='password'
           placeholder='Senha'
           value={this.state.senha ? this.state.senha : ''}
-          onChange={ (val) => this.setInputValue('senha', val) }
+          onChange={(val) => this.setInputValue('senha', val)}
         >
 
         </InputField>
-        
+
         <br></br>
 
         <SubmitButton
           text='Login'
-          className='col-md-6'
+          className='col-md-8 mx-auto'
           disabled={this.state.buttonDisabled}
-          onClick={ () => this.doLogin() }
+          onClick={() => this.doLogin()}
         >
         </SubmitButton>
 
@@ -136,13 +136,13 @@ class LoginForm extends React.Component{
 
         <CadastrarButton
           text='Cadastre-se'
-          className='col-md-6'
+          className='col-md-8 mx-auto'
           disabled={this.state.buttonDisabled}
           onClick={() => this.cadastrar()}
         >
 
         </CadastrarButton>
-        
+
         <br></br>
 
       </div>

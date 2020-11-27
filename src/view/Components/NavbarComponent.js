@@ -14,45 +14,45 @@ import enadewallpapper from '../../assets/enade-wallpapper.png'
 import BancoDeProvasAluno from '../BancoDeProvasAluno'
 
 
-class NavbarComponent extends React.Component{
-  constructor(props){
+class NavbarComponent extends React.Component {
+  constructor(props) {
     super(props);
     this.state = {
-        usuarioId: this.props.usuarioId
+      usuarioId: this.props.usuarioId
     }
   }
 
-  setInputValue(property, val){
+  setInputValue(property, val) {
     this.setState({
       [property]: val
     })
   }
 
-  doLogout(){
-      UserStore.isLoggedIn = false;
-      UserStore.nome = '';
-      UserStore.id = 0;
-      UserStore.email = '';
-      UserStore.senha = '';
-      UserStore.tipo = '';
-      console.log(UserStore)
+  doLogout() {
+    UserStore.isLoggedIn = false;
+    UserStore.nome = '';
+    UserStore.id = 0;
+    UserStore.email = '';
+    UserStore.senha = '';
+    UserStore.tipo = '';
+    console.log(UserStore)
   }
 
-  async voltar(){
+  async voltar() {
     const element = (
-        <div>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <img src={enadewallpapper}></img>
-        </div>
-      )
+      <div>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <img src={enadewallpapper}></img>
+      </div>
+    )
     ReactDOM.render(element, document.getElementById('cardPrincipal'));
 
   }
 
-  visualizarProvas(){
+  visualizarProvas() {
     const element = (
       <BancoDeProvasAluno
         usuarioId={this.state.usuarioId}
@@ -63,32 +63,32 @@ class NavbarComponent extends React.Component{
     ReactDOM.render(element, document.getElementById('cardPrincipal'));
   }
 
-  render(){
+  render() {
     return (
       <div className="navbar">
         <Navbar bg="light" expand="lg" className="col-md-12">
-            <Navbar.Brand onClick="this.voltar()">Enade</Navbar.Brand>
-            <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse id="basic-navbar-nav">
-                <Nav className="mr-auto">
-                  <NavbarButton
-                    text='Visualizar Provas'
-                    className='col-md-12'
-                    onClick={ () => this.visualizarProvas() }
-                  >
-                  </NavbarButton>
-                  <NavbarButton
-                    text='Resultados'
-                    className='col-md-12'
-                    onClick={ () => 0 }
-                  >
-                  </NavbarButton>
-                </Nav>
-                <DropdownButton variant="light" title={`Olá, ${this.props.nome}`} id="dropDownId">
-                    <Dropdown.Item><Button variant="light" onClick={() => this.props.onClick()}>Logout</Button></Dropdown.Item>
-                </DropdownButton>
-            </Navbar.Collapse>
-            </Navbar>
+          <Navbar.Brand onClick="this.voltar()">Enade</Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="mr-auto">
+              <NavbarButton
+                text='Visualizar Provas'
+                className='col-md-12'
+                onClick={() => this.visualizarProvas()}
+              >
+              </NavbarButton>
+              <NavbarButton
+                text='Resultados'
+                className='col-md-12'
+                onClick={() => 0}
+              >
+              </NavbarButton>
+            </Nav>
+            <DropdownButton variant="light" title={`Olá, ${this.props.nome}`} id="dropDownId">
+              <Dropdown.Item><Button variant="light" onClick={() => this.props.onClick()}>Logout</Button></Dropdown.Item>
+            </DropdownButton>
+          </Navbar.Collapse>
+        </Navbar>
       </div>
     );
   }

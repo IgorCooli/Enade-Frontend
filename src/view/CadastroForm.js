@@ -12,25 +12,25 @@ import LoginForm from './LoginForm';
 import enadewallpapper from '../assets/enade-wallpapper.png'
 
 
-class CadastroForm extends React.Component{
+class CadastroForm extends React.Component {
 
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       nome: '',
       email: '',
       senha: '',
-      tipo:''
+      tipo: ''
     }
   }
 
-  setInputValue(property, val){
+  setInputValue(property, val) {
     this.setState({
       [property]: val
     })
   }
 
-  resetForm(){
+  resetForm() {
     this.setState({
       username: '',
       password: '',
@@ -38,56 +38,56 @@ class CadastroForm extends React.Component{
     })
   }
 
-  async cadastrar(){
-      if(!this.state.nome){
-          return;
-      }
-      if(!this.state.email){
-          return;
-      }
-      if(!this.state.senha){
-          return;
-      }
-      
-      axios.post('http://localhost:8080/usuario/save',{
-          nome: this.state.nome,
-          email: this.state.email,
-          senha: this.state.senha,
-          tipo: 'Professor'
-      })
-      .then((response)=>{
-          alert('Usuário cadastrado com sucesso!!!');
-          const element = (
-            <div>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <img src={enadewallpapper}></img>
-            </div>
-          )
-          ReactDOM.render(element, document.getElementById('cardPrincipal'));
+  async cadastrar() {
+    if (!this.state.nome) {
+      return;
+    }
+    if (!this.state.email) {
+      return;
+    }
+    if (!this.state.senha) {
+      return;
+    }
+
+    axios.post('http://localhost:8080/usuario/save', {
+      nome: this.state.nome,
+      email: this.state.email,
+      senha: this.state.senha,
+      tipo: 'Professor'
+    })
+      .then((response) => {
+        alert('Usuário cadastrado com sucesso!!!');
+        const element = (
+          <div>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <img src={enadewallpapper}></img>
+          </div>
+        )
+        ReactDOM.render(element, document.getElementById('cardPrincipal'));
       })
 
   }
 
-  async voltar(){
-   
+  async voltar() {
+
     const element = (
       <div>
-          <br></br>
-          <br></br>
-          <br></br>
-          <br></br>
-          <img src={enadewallpapper}></img>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <img src={enadewallpapper}></img>
       </div>
     )
     ReactDOM.render(element, document.getElementById('cardPrincipal'));
 
-}
+  }
 
 
-  render(){
+  render() {
     return (
       <div className="cadastroForm col-md-8 mx-auto text-center">
         <br></br>
@@ -97,52 +97,52 @@ class CadastroForm extends React.Component{
         <br></br>
         <br></br>
         <InputField
-            className='col-md-12'
-            type='text'
-            placeholder='Nome'
-            onChange={(val) => this.setInputValue('nome', val)}
+          className='col-md-12'
+          type='text'
+          placeholder='Nome'
+          onChange={(val) => this.setInputValue('nome', val)}
         >
         </InputField>
         <br></br>
         <br></br>
         <InputField
-            className='col-md-12'
-            type='email'
-            placeholder='Email'
-            onChange={(val) => this.setInputValue('email', val)}
+          className='col-md-12'
+          type='email'
+          placeholder='Email'
+          onChange={(val) => this.setInputValue('email', val)}
         >
         </InputField>
         <br></br>
         <br></br>
         <div className="row col-md-12">
-            <InputField
-                className='col-md-12'
-                type='password'
-                placeholder='Senha'
-                onChange={(val) => this.setInputValue('senha', val)}
-            >
-            </InputField>
-            <TipoUsuarioSelect>
+          <InputField
+            className='col-md-12'
+            type='password'
+            placeholder='Senha'
+            onChange={(val) => this.setInputValue('senha', val)}
+          >
+          </InputField>
+          <TipoUsuarioSelect>
 
-            </TipoUsuarioSelect>
+          </TipoUsuarioSelect>
         </div>
 
         <SubmitButton
-                text='Cadastrar'
-                className='col-md-12 mx-auto'
-                onClick={ () => this.cadastrar() }
-            >
-                
+          text='Cadastrar'
+          className='col-md-12 mx-auto'
+          onClick={() => this.cadastrar()}
+        >
+
         </SubmitButton>
         <br></br>
         <CadastrarButton
-                text='Voltar'
-                className='col-md-12 mx-auto'
-                onClick={ () => this.voltar() }
-            >
-                
+          text='Voltar'
+          className='col-md-12 mx-auto'
+          onClick={() => this.voltar()}
+        >
+
         </CadastrarButton>
-        
+
       </div>
     );
   }
