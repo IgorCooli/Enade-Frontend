@@ -2,17 +2,13 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import axios from 'axios'
 
-import InputField from './Components/InputField';
-import SubmitButton from './Components/SubmitButton';
-import TipoUsuarioSelect from './Components/TipoUsuarioSelect';
 import CadastrarButton from './Components/CadastrarButton';
-import UserStore from '../store/UserStore'
-import LoginForm from './LoginForm';
-import QuestaoDiscursivaCard from './Components/QuestaoDiscursivaCard'
 import ProvaCard from './Components/ProvaCard'
-import DesativarButton from './Components/SubmitButton'
+import ProvaButton from './Components/SubmitButton'
+import Relatorios from './Relatorios'
 
 import enadewallpapper from '../assets/enade-wallpapper.png'
+import Dashboards from './Dashboards';
 
 
 class BancoDeProvas extends React.Component {
@@ -47,6 +43,32 @@ class BancoDeProvas extends React.Component {
 
   }
 
+  async carregarRelatorios(provaId){
+    console.log(this.state.usuarioId)
+    const element = (
+      <Relatorios
+        provaId={provaId}
+        listaProvas={this.state.listaProvas}
+      >
+
+      </Relatorios>
+    )
+    ReactDOM.render(element, document.getElementById('cardPrincipal'));
+  }
+
+  async carregarDashboards(provaId){
+    console.log(this.state.usuarioId)
+    const element = (
+      <Dashboards
+        provaId={provaId}
+        listaProvas={this.state.listaProvas}
+      >
+
+      </Dashboards>
+    )
+    ReactDOM.render(element, document.getElementById('cardPrincipal'));
+  }
+
   async voltar() {
 
     const element = (
@@ -67,13 +89,28 @@ class BancoDeProvas extends React.Component {
       <div className="provasDiv col-md-8 mx-auto text-center">
         <br></br>
         {this.state.listaProvas.map((prova, index) => {
-          return <div className="row col-md-12">
+          return <div>
+          <div className="row">
+            <ProvaButton
+              className="col-md-6 mx-auto"
+              disabled={false}
+              onClick={() => this.carregarRelatorios(prova.id)}
+              text={"Relatórios"}
+            >
+            </ProvaButton>
+            <ProvaButton
+              className="col-md-6 mx-auto"
+              disabled={false}
+              onClick={() => this.carregarDashboards(prova.id)}
+              text={"Dashboards"}
+            >
+            </ProvaButton>
+          </div>
             <ProvaCard
               className="col-md-12"
               id={prova.id}
               data={prova.data}
             >
-
             </ProvaCard>
           </div>
         })}

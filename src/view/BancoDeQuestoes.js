@@ -101,7 +101,6 @@ class BancoDeQuestoes extends React.Component {
 
     axios.get(`http://localhost:8080/questao/atualizaestado/${id}`)
       .then((response) => {
-        alert(`${response.data}`)
         this.buscarQuestoes();
         this.render();
       })

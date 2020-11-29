@@ -77,12 +77,7 @@ class NavbarComponent extends React.Component {
                 onClick={() => this.visualizarProvas()}
               >
               </NavbarButton>
-              <NavbarButton
-                text='Resultados'
-                className='col-md-12'
-                onClick={() => 0}
-              >
-              </NavbarButton>
+
             </Nav>
             <DropdownButton variant="light" title={`Olá, ${this.props.nome}`} id="dropDownId">
               <Dropdown.Item><Button variant="light" onClick={() => this.props.onClick()}>Logout</Button></Dropdown.Item>

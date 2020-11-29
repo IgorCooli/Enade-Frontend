@@ -17,6 +17,7 @@ import CadastroProva from '../CadastroProva'
 import enadewallpapper from '../../assets/enade-wallpapper.png'
 import BancoDeQuestoes from '../BancoDeQuestoes';
 import BancoDeProvas from '../BancoDeProvas';
+import Alunos from '../Alunos'
 
 
 class NavbarComponent extends React.Component {
@@ -77,6 +78,17 @@ class NavbarComponent extends React.Component {
       >
 
       </CadastroProva>
+    )
+    ReactDOM.render(element, document.getElementById('cardPrincipal'));
+  }
+
+  consultarAlunos() {
+    const element = (
+      <Alunos
+
+      >
+
+      </Alunos>
     )
     ReactDOM.render(element, document.getElementById('cardPrincipal'));
   }
@@ -144,14 +156,15 @@ class NavbarComponent extends React.Component {
                     onClick={() => this.bancoDeProvas()}
                   >
                   </NavbarButton>
-                  <NavbarButton
-                    text='Resultados'
-                    className='col-md-12'
-                    onClick={() => 0}
-                  >
-                  </NavbarButton>
                 </Dropdown.Item>
               </DropdownButton>
+
+              <NavbarButton
+                text='Alunos'
+                className='col-md-12'
+                onClick={() => this.consultarAlunos()}
+              >
+              </NavbarButton>
             </Nav>
             <DropdownButton variant="light" title={`Olá, ${this.props.nome}`} id="dropDownId">
               <Dropdown.Item><Button variant="light" onClick={() => this.props.onClick()}>Logout</Button></Dropdown.Item>

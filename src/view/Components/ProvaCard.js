@@ -13,6 +13,9 @@ class ProvaCard extends React.Component {
           <Card.Header>{`Prova ${this.props.id}`}</Card.Header>
           <Card.Body>
             <Card.Title className=" d-flex justify-content-left">{`Enade ${this.props.data}`}</Card.Title>
+            <footer className="footer">
+              {this.props.nota ? "" : this.props.nota}
+            </footer>
           </Card.Body>
         </Card>
         <br></br>

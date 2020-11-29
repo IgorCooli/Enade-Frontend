@@ -45,11 +45,19 @@
 }
 
 .app{
-  background-color: rgb(131, 103, 156);
+  background-color: #87CEEB	;
   min-height: 100vh;
   min-width: 100vh;
 }
 
 #cardPrincipal{
   text-align: center;
+}
+
+.card-image{
+  width: 100;
+}
+
+.dashboardCard{
+  background-color: white;
 }
