@@ -5,11 +5,11 @@
 
 
 ## REPOSITÓRIOS:
-    ### front: https://github.com/IgorCooli/Enade-Frontend.git
-    ### back: https://github.com/IgorCooli/Enade-Backend.git
+    front: https://github.com/IgorCooli/Enade-Frontend.git
+    back: https://github.com/IgorCooli/Enade-Backend.git
 
 ## SITE:
-    ### http://simulado-enade.surge.sh/
+    http://simulado-enade.surge.sh/
 ## LOGIN:
     PROFESSOR:
         USUARIO: tassio.professor@gmail.com
