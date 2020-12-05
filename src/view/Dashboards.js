@@ -101,18 +101,18 @@ class Dashboards extends React.Component {
     }
 
     async buscarAlunosFizeramProva() {
-        axios.get(`http://localhost:8080/usuario/findallalunosfizeramprova/${this.state.provaId}`).then((response) => {
+        axios.get(`https://enade-backend.herokuapp.com/usuario/findallalunosfizeramprova/${this.state.provaId}`).then((response) => {
             this.setInputValue('fizeramProva', response.data)
         })
     }
     async buscarAlunosNaoFizeramProva() {
-        axios.get(`http://localhost:8080/usuario/findallalunosnaofizeramprova/${this.state.provaId}`).then((response) => {
+        axios.get(`https://enade-backend.herokuapp.com/usuario/findallalunosnaofizeramprova/${this.state.provaId}`).then((response) => {
             this.setInputValue('naoFizeramProva', response.data)
         })
     }
 
     async buscarUltimos10Alunos() {
-        axios.get(`http://localhost:8080/resultado/findultimosdezalunos/${this.state.provaId}`).then((response) => {
+        axios.get(`https://enade-backend.herokuapp.com/resultado/findultimosdezalunos/${this.state.provaId}`).then((response) => {
             this.setInputValue('ultimos10', response.data)
             console.log(this.state.ultimos10)
         })

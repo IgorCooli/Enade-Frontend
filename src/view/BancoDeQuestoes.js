@@ -39,7 +39,7 @@ class BancoDeQuestoes extends React.Component {
 
 
   async buscarQuestoes() {
-    axios.get('http://localhost:8080/questao/findall')
+    axios.get('https://enade-backend.herokuapp.com/questao/findall')
       .then((response) => {
         this.setInputValue('listaQuestoes', response.data)
         console.log(response.data)
@@ -60,7 +60,7 @@ class BancoDeQuestoes extends React.Component {
       return;
     }
 
-    axios.post('http://localhost:8080/usuario/save', {
+    axios.post('https://enade-backend.herokuapp.com/usuario/save', {
       nome: this.state.nome,
       email: this.state.email,
       senha: this.state.senha,
@@ -99,7 +99,7 @@ class BancoDeQuestoes extends React.Component {
 
   async atualizaQuestao(id) {
 
-    axios.get(`http://localhost:8080/questao/atualizaestado/${id}`)
+    axios.get(`https://enade-backend.herokuapp.com/questao/atualizaestado/${id}`)
       .then((response) => {
         this.buscarQuestoes();
         this.render();

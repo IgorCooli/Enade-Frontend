@@ -50,7 +50,7 @@ class Prova extends React.Component {
   }
 
   async buscarQuestoes(provaId) {
-    axios.get(`http://localhost:8080/prova/findquestoes/${provaId}`)
+    axios.get(`https://enade-backend.herokuapp.com/prova/findquestoes/${provaId}`)
       .then((response) => {
         // console.log(response.data)
 
@@ -129,7 +129,7 @@ class Prova extends React.Component {
   }
 
   async salvaResultado(nota) {
-    axios.post('http://localhost:8080/resultado/save', {
+    axios.post('https://enade-backend.herokuapp.com/resultado/save', {
       valorObtido: nota,
       usuarioId: this.state.usuarioId,
       provaId: this.state.provaId

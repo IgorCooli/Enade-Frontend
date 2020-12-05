@@ -44,7 +44,7 @@ class CadastroQuestaoForm extends React.Component {
       return;
     }
 
-    axios.post('http://localhost:8080/questao/save', {
+    axios.post('https://enade-backend.herokuapp.com/questao/save', {
       descricao: this.state.descricao,
       alternativaA: this.state.alternativaA,
       alternativaB: this.state.alternativaB,

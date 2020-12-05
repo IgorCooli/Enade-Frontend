@@ -38,7 +38,7 @@ class CadastroProva extends React.Component {
   }
 
   async buscarQuestoes() {
-    axios.get('http://localhost:8080/questao/findallativa')
+    axios.get('https://enade-backend.herokuapp.com/questao/findallativa')
       .then((response) => {
         this.setInputValue('listaQuestoes', response.data)
         console.log(response.data)
@@ -59,26 +59,30 @@ class CadastroProva extends React.Component {
   }
 
   async cadastrar() {
-    axios.post('http://localhost:8080/prova/save', {
-      data: this.state.dataProva,
-      questoes: this.state.listaQuestoesAdicionadas
-    })
-      .then((response) => {
-        alert('Prova cadastrado com sucesso!!!');
-        const element = (
-          <div>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <img src={enadewallpapper}></img>
-          </div>
-        )
-        ReactDOM.render(element, document.getElementById('cardPrincipal'));
+    if (this.state.listaQuestoesAdicionadas.length < 36) {
+      alert(`Você não selecionou 36 questões, faltam ${36 - this.state.listaQuestoesAdicionadas.length}`)
+    } else {
+      axios.post('https://enade-backend.herokuapp.com/prova/save', {
+        data: this.state.dataProva,
+        questoes: this.state.listaQuestoesAdicionadas
       })
-      .catch((err) => {
-        alert("Erro ao cadastrar prova!!!");
-      })
+        .then((response) => {
+          alert('Prova cadastrado com sucesso!!!');
+          const element = (
+            <div>
+              <br></br>
+              <br></br>
+              <br></br>
+              <br></br>
+              <img src={enadewallpapper}></img>
+            </div>
+          )
+          ReactDOM.render(element, document.getElementById('cardPrincipal'));
+        })
+        .catch((err) => {
+          alert("Erro ao cadastrar prova!!!");
+        })
+    }
   }
 
   async voltar() {

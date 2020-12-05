@@ -50,7 +50,7 @@ class LoginForm extends React.Component {
       buttonDisabled: true,
     })
 
-    axios.post('http://localhost:8080/usuario/login', {
+    axios.post('https://enade-backend.herokuapp.com/usuario/login', {
       email: this.state.email,
       senha: this.state.senha
     })

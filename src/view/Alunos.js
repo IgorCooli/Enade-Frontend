@@ -25,15 +25,15 @@ class Alunos extends React.Component {
 
   async componentDidMount() {
     try {
-      this.buscarProvas()
+      this.buscarAlunos()
     } catch (error) {
 
     }
   }
 
 
-  async buscarProvas() {
-    axios.get('http://localhost:8080/usuario/findallalunos')
+  async buscarAlunos() {
+    axios.get('https://enade-backend.herokuapp.com/usuario/findallalunos')
       .then((response) => {
         this.setInputValue('listaAlunos', response.data)
         console.log(response.data)

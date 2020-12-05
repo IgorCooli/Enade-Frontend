@@ -54,7 +54,7 @@ class BancoDeProvas extends React.Component {
 
 
   async buscarProvas() {
-    axios.get('http://localhost:8080/prova/findall')
+    axios.get('https://enade-backend.herokuapp.com/prova/findall')
       .then((response) => {
         this.setInputValue('listaProvas', response.data)
         console.log(response.data)

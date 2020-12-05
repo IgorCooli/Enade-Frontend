@@ -66,7 +66,7 @@ class NavbarComponent extends React.Component {
   render() {
     return (
       <div className="navbar">
-        <Navbar bg="light" expand="lg" className="col-md-12">
+        <Navbar bg="light" expand="lg" className="col-md-12" style={{borderRadius: 10}}>
           <Navbar.Brand onClick="this.voltar()">Enade</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">

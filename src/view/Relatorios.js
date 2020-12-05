@@ -82,13 +82,13 @@ class Relatorios extends React.Component {
     }
 
     async buscarAlunosFizeramProva() {
-        axios.get(`http://localhost:8080/usuario/findallalunosfizeramprova/${this.state.provaId}`).then((response) => {
+        axios.get(`https://enade-backend.herokuapp.com/usuario/findallalunosfizeramprova/${this.state.provaId}`).then((response) => {
             this.setInputValue('fizeramProva', response.data)
             console.log(this.state.fizeramProva)
         })
     }
     async buscarAlunosNaoFizeramProva() {
-        axios.get(`http://localhost:8080/usuario/findallalunosnaofizeramprova/${this.state.provaId}`).then((response) => {
+        axios.get(`https://enade-backend.herokuapp.com/usuario/findallalunosnaofizeramprova/${this.state.provaId}`).then((response) => {
             this.setInputValue('naoFizeramProva', response.data)
             console.log(this.state.naoFizeramProva)
         })
